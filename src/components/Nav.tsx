@@ -19,7 +19,6 @@ import {
   MoonIcon,
   SunIcon,
   UserIcon,
-  UserPlusIcon,
   SearchIcon,
 } from "@iconicicons/react";
 import { useEffect, useState } from "react";
@@ -29,8 +28,6 @@ import { formatAddress } from "../utils/format";
 import { RootState } from "../store/reducers";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAddress, updateTheme } from "../store/actions";
-import { client as arweave, isAddress, CACHE_URL } from "../utils/arweave";
-import { interactWrite } from "smartweave";
 import useArConnect from "use-arconnect";
 import Link from "next/link";
 import Verto from "@verto/js";
@@ -45,7 +42,7 @@ const Nav = () => {
   const address = useSelector((state: RootState) => state.addressReducer);
   const arconnect = useArConnect();
   const router = useRouter();
-  const items: Item[] = ["app", "space", "swap", "orbit"];
+  const items: Item[] = ["app", "space", "bridge", "swap", "orbit"];
   const [selectedItem, setSelectedItem] = useState<Item>();
   const [selectionPos, setSelectionPos] = useState<{
     x: number;
@@ -205,6 +202,14 @@ const Nav = () => {
                   ref={(el) => updateSelectionPos(el, "space")}
                 >
                   Space
+                </a>
+              </Link>
+              <Link href="/bridge">
+                <a
+                  className={selectedItem === "bridge" ? styles.Selected : ""}
+                  ref={(el) => updateSelectionPos(el, "bridge")}
+                >
+                  Bridge
                 </a>
               </Link>
               <Link href="/swap">
@@ -379,6 +384,6 @@ const Nav = () => {
   );
 };
 
-type Item = "app" | "space" | "swap" | "orbit";
+type Item = "app" | "space" | "swap" | "orbit" | "bridge";
 
 export default Nav;
