@@ -3,7 +3,7 @@ import { JWKInterface } from "arweave/node/lib/wallet";
 import { interactWrite, readContract } from "smartweave";
 
 // export const contractAddress = process.env.REACT_APP_DOJIMA_CONTRACT_ADDRESS;
-export const contractAddress = "GpM-Xw3h4myQg0ps_hl9Egf1YC3zk5Rb5xMdJirLvMU";
+export const contractAddress = "cFitoslyxTAD_VY07yPwN2zz48f3-2CmwBQPprTjL5Y";
 // const dojimaDefaultTags:Array<any> = JSON.parse(process.env.REACT_APP_DOJIMA_DEFAULT_TAGS as string)
 const dojimaDefaultTags: Array<any> = [
   {

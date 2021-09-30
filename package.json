@@ -49,7 +49,8 @@
     "swr": "^0.5.6",
     "typed.js": "^2.0.12",
     "use-arconnect": "^1.0.1",
-    "web3": "^1.5.2"
+    "web3": "^1.5.2",
+    "web3-utils": "^1.5.3"
   },
   "devDependencies": {
     "@types/marked": "^2.0.4",

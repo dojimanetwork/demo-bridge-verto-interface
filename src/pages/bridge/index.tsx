@@ -20,6 +20,8 @@ import useSWR from "swr";
 import styles from "../../styles/views/swap.module.sass";
 import { getPstBalance, transferPstFromAr } from "../../utils/arlocal";
 import BStyles from "../../styles/components/Balance.module.sass";
+import { ethProvider, pstTransferToAdress, web3 } from "../../utils/ether";
+import Web3 from "web3";
 
 const client = new Verto();
 
@@ -145,12 +147,22 @@ const Swap = (props: { tokens: TokenInterface[] }) => {
         value: "Transfer",
       },
     ]);
+    const resp = await pstTransferToAdress(output.state as string);
+
     setCreatingSwap(false);
-    setToast({
-      description: "PST transferred successfully to DOJIMA Address",
-      type: "success",
-      duration: 4500,
-    });
+    {
+      resp
+        ? setToast({
+            description: "PST transferred successfully to DOJIMA Address",
+            type: "success",
+            duration: 4500,
+          })
+        : setToast({
+            description: "Failed to transfer pst. Please try again",
+            type: "error",
+            duration: 4500,
+          });
+    }
     setTimeout(() => {
       getPSTBalance();
     }, 1000);
@@ -163,6 +175,8 @@ const Swap = (props: { tokens: TokenInterface[] }) => {
   }, []);
 
   const getPSTBalance = async () => {
+    console.log(web3.currentProvider);
+
     const latestState = await getPstBalance();
     setBalance(latestState);
   };

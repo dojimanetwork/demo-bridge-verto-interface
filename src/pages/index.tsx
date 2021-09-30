@@ -26,7 +26,6 @@ const Home = ({ artwork }: { artwork: any }) => {
   const address = useSelector((state: RootState) => state.addressReducer);
   const router = useRouter();
   const dispatch = useDispatch();
-
   useEffect(() => {
     const options = {
       strings: ["PSTs", "PSCs", "NFTs", "collectibles", "anything"],
